@@ -6,7 +6,7 @@ Told by William. Written down word for word from how he told it, then set to pic
 
 *Scene One · The Attack Begins*
 
-The Lettuce Kingdom strikes first, so the Tomato Kingdom sends up its best supersonic jet. The Lettuce Kingdom answers with a helicopter. High above everything, a Tomato drone carries a sniper up and lets him go — and from way up there he puts a hole straight through an enemy paratrooper's chute. That soldier is not landing. Below them a Lettuce soldier swings on a rope tied to the helicopter's tail, trading fire with the machine gun on the Tomato roof. And down on the ground, one man keeps shooting at the enemy wall: Tom.
+The Lettuce Kingdom strikes first, so the Tomato Kingdom sends up its best supersonic jet. The Lettuce Kingdom answers with a helicopter. High above everything, a Tomato drone carries a sniper up and lets him go. There he puts a hole straight through an enemy paratrooper's chute. That soldier is not landing. Below them a Lettuce soldier swings on a rope tied to the helicopter's tail, trading fire with the machine gun on the Tomato roof. And down on the ground, one man keeps shooting at the enemy wall: Tom.
 
 ## First Missile
 
