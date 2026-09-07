@@ -69,14 +69,14 @@
   .step{font-family:var(--display);font-size:24px;width:60px;height:60px;border-radius:50%;
     display:grid;place-items:center;background:var(--ink);color:var(--surface);border:4px solid var(--line)}
   .rail .thread{flex:1;width:3px;background:repeating-linear-gradient(var(--rule) 0 8px,transparent 8px 16px);border-radius:2px}
-  .rail .src{font-family:var(--mono);font-size:10px;color:var(--ink-soft);text-align:center;line-height:1.3}
+  .rail .src{display:none;font-family:var(--mono);font-size:10px;color:var(--ink-soft);text-align:center;line-height:1.3}
 
   .panel h2{font-family:var(--display);font-size:clamp(22px,3.4vw,30px);margin:2px 0 6px;line-height:1.15}
   .beat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
   .narration{margin:0 0 16px;max-width:64ch;font-size:18px}
   .frame{margin:0;border:5px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:0 8px 0 -2px var(--shadow);line-height:0}
   .frame svg{width:100%;height:auto;display:block}
-  figcaption{line-height:1.5;font-family:var(--mono);font-size:12px;color:var(--ink-soft);padding:10px 14px;border-top:3px solid var(--rule);background:var(--surface)}
+  figcaption{display:none;line-height:1.5;font-family:var(--mono);font-size:12px;color:var(--ink-soft);padding:10px 14px;border-top:3px solid var(--rule);background:var(--surface)}
   .look{margin:12px 0 0;font-size:14px;color:var(--ink-soft);padding-left:14px;border-left:4px solid var(--scarf)}
 
   .interlude{margin:0 0 56px 96px;padding:26px 30px;background:var(--surface);border:4px solid var(--scarf);border-radius:20px}
@@ -227,9 +227,18 @@
   #stageArt .tag{background:rgba(231,238,243,.92);color:#16202A;font-size:11px}
 
   /* ---------- two-screen chrome ---------- */
-  .toolbar{position:fixed;top:14px;right:14px;z-index:80;display:flex;gap:6px;align-items:center;
+  .toolbar{position:fixed;top:14px;right:0;z-index:80;display:flex;gap:6px;align-items:center;
     padding:7px;background:var(--surface);border:3px solid var(--line);border-radius:14px;
-    box-shadow:0 6px 0 -2px var(--shadow);font-family:var(--mono);font-size:12px}
+    box-shadow:0 6px 0 -2px var(--shadow);font-family:var(--mono);font-size:12px;
+    transform:translateX(-14px);transition:transform .3s cubic-bezier(.22,.72,.24,1)}
+  .toolbar .grip{flex:0 0 auto;align-self:stretch;width:16px;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:var(--ink-soft);user-select:none}
+  .toolbar .grip svg{width:11px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;
+    stroke-linecap:round;stroke-linejoin:round;transition:transform .3s ease}
+  .toolbar:hover .grip{color:var(--ink)}
+  body[data-bar="closed"] .toolbar{transform:translateX(calc(100% - 34px));
+    border-top-right-radius:0;border-bottom-right-radius:0}
+  body[data-bar="open"] .toolbar .grip svg{transform:scaleX(-1)}
   .toolbar button{font:inherit;font-family:var(--mono);cursor:pointer;border:2px solid var(--rule);background:transparent;
     color:var(--ink);border-radius:9px;padding:6px 11px;letter-spacing:.04em}
   .toolbar button:hover{border-color:var(--ink)}
@@ -267,7 +276,9 @@
     .scene{grid-template-columns:50px 1fr;gap:14px}
     .step{width:46px;height:46px;font-size:18px}
     .rail .src{display:none} .interlude{margin-left:0}
-    .toolbar{left:8px;right:8px;top:8px;justify-content:center;flex-wrap:wrap}
+    .toolbar{left:8px;right:8px;top:8px;justify-content:center;flex-wrap:wrap;transform:none}
+    body[data-bar="closed"] .toolbar{transform:none}
+    .toolbar .grip{display:none}
   }
 </style>
 
@@ -977,18 +988,17 @@
     <div class="vs">VS</div>
     <div class="crest">
       <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#lettuce" x="0" y="0" width="100" height="100"/></svg>
-      <b class="side-l">Lettuce<br>Kingdom</b><small>RIGHT · THE BAD SIDE</small>
+      <b class="side-l">Lettuce<br>Kingdom</b><small>RIGHT · The Evil Side</small>
     </div>
     <div class="title-block">
-      <p class="kicker">Five Scenes · Cartoon Remake</p>
       <h1>The Tomato Kingdom War</h1>
       <p class="logline">The Lettuce Kingdom attacks first. Both sides have a missile silo, and both sides fight in the sky. But the real story is about a soldier on the ground named Tom — and what is buried under the Lettuce Kingdom.</p>
       <button class="narrate" type="button" data-src="audio/00-intro.mp3" aria-label="Play William reading the introduction"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button>
     </div>
   </header>
 
-  <p class="cast-head">Who to watch for</p>
-  <div class="cast">
+  <p class="cast-head" hidden>Who to watch for</p>
+  <div class="cast" hidden>
     <div class="card card--tom">
       <svg viewBox="0 0 62 72" aria-hidden="true"><use href="#tom" x="0" y="0" width="62" height="72"/></svg>
       <div><h3>Tom</h3><p>Yellow scarf, in all five pictures. He keeps the scarf on even over a radiation suit.</p></div>
@@ -2002,6 +2012,7 @@
 </div>
 
 <div class="toolbar" role="group" aria-label="Screen mode">
+  <span class="grip" aria-hidden="true"><svg viewBox="0 0 12 18"><path d="M8.5 2 L3 9 L8.5 16"/></svg></span>
   <button id="mScript" type="button">SCRIPT</button>
   <button id="mStage" type="button">STAGE</button>
   <span class="pos" id="pos">1 / 5</span>
@@ -2148,6 +2159,22 @@
     };
   })();
 
+
+  /* ---------------- toolbar tucks itself out of the way ---------------- */
+  (function(){
+    var bar = document.querySelector('.toolbar');
+    if (!bar) return;
+    var t = 0, HIDE = 2600;
+    function open(){ clearTimeout(t); document.body.dataset.bar = 'open'; }
+    function close(d){ clearTimeout(t); t = setTimeout(function(){ document.body.dataset.bar = 'closed'; }, d || HIDE); }
+    bar.addEventListener('mouseenter', open);
+    bar.addEventListener('mouseleave', function(){ close(HIDE); });
+    bar.addEventListener('focusin', open);
+    bar.addEventListener('focusout', function(){ close(HIDE); });
+    bar.addEventListener('click', function(){ open(); close(4200); });
+    bar.addEventListener('touchstart', function(){ open(); close(5200); }, { passive: true });
+    open(); close(3200);
+  })();
 
   /* ---------------- narration: William reading the story ---------------- */
   (function(){
