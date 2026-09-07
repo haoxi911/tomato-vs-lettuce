@@ -1,0 +1,14 @@
+# Standalone Caddy for the storybook container (see docker-compose.yml).
+:80 {
+	root * /srv
+	file_server
+	encode zstd gzip
+
+	# the page is one big self-contained file — don't let a stale copy stick
+	@html path *.html
+	header @html Cache-Control "no-cache"
+
+	# the scans never change
+	@art path /art/*
+	header @art Cache-Control "public, max-age=604800, immutable"
+}

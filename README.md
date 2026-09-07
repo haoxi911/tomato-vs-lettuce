@@ -50,3 +50,8 @@ Each sheet of paper was longer than the scanner bed, so every drawing arrived as
 ## Credits
 
 Story and original drawings by William. Digitisation, redraw and animation by his dad, with Claude.
+
+## Self-hosting
+
+See [`deploy/README.md`](deploy/README.md) — a Caddyfile block for a server you already
+run, or a one-command Docker container.
