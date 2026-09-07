@@ -35,6 +35,13 @@ Left side is the Tomato Kingdom. Right side is the Lettuce Kingdom. Tom only eve
 
 The page has a **Script** view and a full-screen **Stage** view. Open the same file in two windows, put one in Stage mode (`index.html#stage`), and they stay in sync through `localStorage` — one screen to read from, one to film.
 
+### William reads it
+
+Every scene title in the Script view has a play button. That's William reading his own
+story — recorded in one take, then cut into chapters. `audio/` holds the eight clips
+(intro, the five scenes, Tom's Choice, and the ending). The button shows the clip
+length, and turns into a countdown while it plays.
+
 ### Other controls
 
 - **ORIGINAL / CARTOON** — flip any scene between William's drawing and the redraw
@@ -50,8 +57,3 @@ Each sheet of paper was longer than the scanner bed, so every drawing arrived as
 ## Credits
 
 Story and original drawings by William. Digitisation, redraw and animation by his dad, with Claude.
-
-## Self-hosting
-
-See [`deploy/README.md`](deploy/README.md) — a Caddyfile block for a server you already
-run, or a one-command Docker container.

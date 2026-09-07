@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Tomato Kingdom vs Lettuce Kingdom - an animated storybook drawn by William, aged 9, rebuilt as SVG.">
+<meta name="description" content="Tomato Kingdom vs Lettuce Kingdom - an animated storybook drawn and narrated by William, aged 9.">
 <style>
   :root{color-scheme:light dark}
   html,body{margin:0}
@@ -185,6 +185,23 @@
     @keyframes aDashB{to{stroke-dashoffset:28}}
   }
 
+
+
+  /* ---------- narration play buttons ---------- */
+  .narrate{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;
+    margin:0 0 0 12px;transform:translateY(-2px);
+    border:3px solid var(--ink);background:var(--surface);color:var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;line-height:1;
+    border-radius:999px;padding:6px 13px 6px 9px;cursor:pointer;white-space:nowrap}
+  .narrate:hover{background:var(--ground)}
+  .narrate:focus-visible{outline:3px solid var(--scarf);outline-offset:2px}
+  .narrate[data-on="1"]{background:var(--ink);color:var(--surface)}
+  .narrate .ic{width:13px;height:13px;display:block;fill:currentColor;flex:0 0 auto}
+  .narrate .ic .ps{display:none}
+  .narrate[data-on="1"] .ic .pl{display:none}
+  .narrate[data-on="1"] .ic .ps{display:inline}
+  .narrate .t{font-variant-numeric:tabular-nums}
+  .title-block .narrate{margin:10px 0 0;transform:none}
 
   /* ---------- original / cartoon comparison ---------- */
   [hidden]{display:none !important}
@@ -966,6 +983,7 @@
       <p class="kicker">Five Scenes · Cartoon Remake</p>
       <h1>The Tomato Kingdom War</h1>
       <p class="logline">The Lettuce Kingdom attacks first. Both sides have a missile silo, and both sides fight in the sky. But the real story is about a soldier on the ground named Tom — and what is buried under the Lettuce Kingdom.</p>
+      <button class="narrate" type="button" data-src="audio/00-intro.mp3" aria-label="Play William reading the introduction"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button>
     </div>
   </header>
 
@@ -990,7 +1008,7 @@
     <div class="rail"><span class="step">1</span><span class="thread"></span><span class="src">from<br>drawing 04</span></div>
     <div class="panel">
       <p class="beat">Scene One · The Attack Begins</p>
-      <h2>Two Kingdoms, One Sky</h2>
+      <h2>Two Kingdoms, One Sky<button class="narrate" type="button" data-src="audio/01-scene-1.mp3" aria-label="Play William reading scene one"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
       <p class="narration">The Lettuce Kingdom strikes first, so the Tomato Kingdom sends up its best supersonic jet. The Lettuce Kingdom answers with a helicopter. High above everything, a Tomato drone carries a sniper up and lets him go — and from way up there he puts a hole straight through an enemy paratrooper's chute. That soldier is not landing. Below them a Lettuce soldier swings on a rope tied to the helicopter's tail, trading fire with the machine gun on the Tomato roof. And down on the ground, one man keeps shooting at the enemy wall: Tom.</p>
       <figure class="frame">
         <div class="art" data-view="cartoon">
@@ -1172,7 +1190,7 @@
     <div class="rail"><span class="step">2</span><span class="thread"></span><span class="src">from<br>drawing 05</span></div>
     <div class="panel">
       <p class="beat">Scene Two · Direct Hit</p>
-      <h2>First Missile</h2>
+      <h2>First Missile<button class="narrate" type="button" data-src="audio/02-scene-2.mp3" aria-label="Play William reading scene two"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
       <p class="narration">The Tomato silo fires. The missile flies the whole way across the field and knocks the Lettuce base over. In the same moment the supersonic jet lets go of its own missile — watch it fly down the line and hit the helicopter. The Lettuce Kingdom still has one card left: their drone drops a soldier straight at the Tomato roof to break the machine gun. And Tom? Tom has not moved. He is still shooting at the wall.</p>
       <figure class="frame">
         <div class="art" data-view="cartoon">
@@ -1375,7 +1393,7 @@
     <div class="rail"><span class="step">3</span><span class="thread"></span><span class="src">from<br>drawing 06</span></div>
     <div class="panel">
       <p class="beat">Scene Three · They Hit Back</p>
-      <h2>The Counterstrike</h2>
+      <h2>The Counterstrike<button class="narrate" type="button" data-src="audio/03-scene-3.mp3" aria-label="Play William reading scene three"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
       <p class="narration">Now the Lettuce silo fires. Their missile comes screaming back the other way and lands right on the Tomato roof — the machine gun and every weapon up there are smashed to pieces. The Tomato Kingdom does not stop. Paratroopers drop onto the enemy roof to take out the laser guns that are still firing; one of them is already dead metal. And on the ground, Tom keeps doing the exact same thing: shooting at the base. Not at people. Just the base.</p>
       <figure class="frame">
         <div class="art" data-view="cartoon">
@@ -1599,7 +1617,7 @@
     <div class="rail"><span class="step">4</span><span class="thread"></span><span class="src">from<br>drawing 03</span></div>
     <div class="panel">
       <p class="beat">Scene Four · Two Betrayals</p>
-      <h2>The Tomato Bomb</h2>
+      <h2>The Tomato Bomb<button class="narrate" type="button" data-src="audio/04-scene-4.mp3" aria-label="Play William reading scene four"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
       <p class="narration">The Lettuce base is wrecked — and then the ground opens and a whole new set of high-tech weapons rises up out of it, including a second rocket launcher. A Tomato jet fires, and the missile goes straight into the new machines.</p>
       <p class="narration">Then somebody is hanging upside down at the edge of the picture, roped by the ankles, and it is Tom. He was a Lettuce Kingdom spy the whole time. Years of it. That is why he only ever shot at walls — he was faking every attack. A spy in the family <em>and</em> a nuclear weapon buried next door: the King has heard enough. He sends up the Tomato Kingdom's strongest weapon. The Tomato Bomb comes down between the two kingdoms and goes off like a small sun, and Tom hangs there and shakes.</p>
       <figure class="frame">
@@ -1794,7 +1812,7 @@
 
   <section class="interlude">
     <p class="beat">Between Scene Four and Scene Five</p>
-    <h2>Tom's Choice</h2>
+    <h2>Tom's Choice<button class="narrate" type="button" data-src="audio/05-interlude.mp3" aria-label="Play William reading Tom's choice"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
     <p>Hanging there upside down, Tom starts remembering. He came to the Tomato Kingdom when he was very small. He met his best friends here. He got married here. His kids have never lived anywhere else. He was born in the Lettuce Kingdom — but this is the place he actually loves.</p>
     <p>And he knows something nobody else does: the nuclear weapon under the Lettuce base is already armed. In two days it goes off, and his home and the whole Tomato Kingdom go with it. He is done watching his friends die for the wrong side of the story.</p>
     <p>So Tom switches sides for real, and offers to lead the way in.</p>
@@ -1805,7 +1823,7 @@
     <div class="rail"><span class="step">5</span><span class="thread"></span><span class="src">from<br>drawing 02</span></div>
     <div class="panel">
       <p class="beat">Scene Five · Two Men Go Down</p>
-      <h2>Shut It Down</h2>
+      <h2>Shut It Down<button class="narrate" type="button" data-src="audio/06-scene-5.mp3" aria-label="Play William reading scene five"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
       <p class="narration">Tom teams up with Ryley, the best SWAT operator the Tomato Kingdom has — the one who made it home from planet 4546B and knows how to move in a radiation suit. Both of them suit up. One knows the enemy, the other knows how to survive down there. They rope down the launch silo together.</p>
       <p class="narration">What they find on level B1 is strange. The guards left behind have all gone wrong from the radiation: one is walking upside down on the ceiling, one is floating in the air with his arms out, and one locked himself in the shielded safe room — no suit, no way out, so he just sits in there playing video games forever. None of them are holding a weapon any more. Only one guard is still together enough to stop them, and he does not stop them for long.</p>
       <p class="narration">Down on B2 they find the launcher. They do not have the password, so they do it the rough way, and the whole reactor circuit blows out and catches fire. Good thing there is a CO₂ bottle on the wall. They put the fire out — and then point the same bottle at the floor, turn it into a jet, and ride it up the air duct back to the surface.</p>
@@ -1977,7 +1995,7 @@
   </article>
 
   <section class="ending">
-    <h2>Tomato Kingdom Wins</h2>
+    <h2>Tomato Kingdom Wins<button class="narrate" type="button" data-src="audio/07-ending.mp3" aria-label="Play William reading the ending"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button></h2>
     <p>Every Lettuce Kingdom base near the Tomato Kingdom is destroyed. Their soldiers are gone. The nuclear launcher is dead, the fire is out, and two men rode a fire extinguisher home through an air duct. One of them was supposed to be the enemy.</p>
   </section>
 
@@ -2130,6 +2148,49 @@
     };
   })();
 
+
+  /* ---------------- narration: William reading the story ---------------- */
+  (function(){
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.narrate'));
+    if (!btns.length) return;
+    var AUD = new Audio(); AUD.preload = 'none';
+    var cur = null;
+    function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s/60) + ':' + ('0' + (s%60)).slice(-2); }
+    function rest(b){ b.dataset.on = '0'; b.querySelector('.t').textContent = b.dataset.len || 'PLAY'; }
+    function stop(){ if (cur){ rest(cur); cur = null; } }
+    window.stopNarration = function(){ try { AUD.pause(); } catch(e){} stop(); };
+
+    btns.forEach(function(b){
+      var probe = new Audio();
+      probe.preload = 'metadata';
+      probe.addEventListener('loadedmetadata', function(){
+        if (isFinite(probe.duration)){ b.dataset.len = fmt(probe.duration); b.querySelector('.t').textContent = b.dataset.len; }
+      });
+      probe.src = b.dataset.src;
+      // drop the button only when the file is genuinely not served (e.g. the no-audio build)
+      if (window.fetch && location.protocol.indexOf('http') === 0){
+        fetch(b.dataset.src, { method: 'HEAD' })
+          .then(function(r){ if (!r.ok) b.remove(); })
+          .catch(function(){});
+      }
+
+      b.addEventListener('click', function(){
+        if (cur === b){ AUD.pause(); stop(); return; }
+        stop();
+        cur = b; b.dataset.on = '1';
+        if (AUD.src.indexOf(b.dataset.src) === -1) AUD.src = b.dataset.src;
+        AUD.currentTime = 0;
+        var p = AUD.play();
+        if (p && p.catch) p.catch(function(){ b.querySelector('.t').textContent = 'ERR'; stop(); });
+      });
+    });
+    AUD.addEventListener('timeupdate', function(){
+      if (cur && isFinite(AUD.duration)) cur.querySelector('.t').textContent = fmt(AUD.duration - AUD.currentTime);
+    });
+    AUD.addEventListener('ended', stop);
+    AUD.addEventListener('error', stop);
+  })();
+
   /* ---------------- scene / two-screen control ---------------- */
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
   var KEY = 'tkw.scene', cur = 0;
@@ -2151,7 +2212,9 @@
     scenes.forEach(function(el, i){ el.classList.toggle('is-active', i === cur); });
     var sc = scenes[cur];
     stageBeat.textContent = sc.querySelector('.beat').textContent;
-    stageTitle.textContent = sc.querySelector('h2').textContent;
+    var _h = sc.querySelector('h2').cloneNode(true);
+    var _b = _h.querySelector('.narrate'); if (_b) _b.remove();
+    stageTitle.textContent = _h.textContent.trim();
     if (mode === 'stage'){
       stageArt.innerHTML = '';
       var art = sc.querySelector('.art').cloneNode(true);
@@ -2163,12 +2226,14 @@
     if (mode === 'stage') SFX.play(cur); else SFX.stop();
   }
   function go(i, broadcast){
+    if (window.stopNarration) window.stopNarration();
     cur = (i + scenes.length) % scenes.length;
     render();
     if (broadcast !== false){ try { localStorage.setItem(KEY, JSON.stringify({ i: cur, t: Date.now() })); } catch(e){} }
     if (mode === 'script') scenes[cur].scrollIntoView({ behavior:'smooth', block:'start' });
   }
   function setMode(m){
+    if (m === 'stage' && window.stopNarration) window.stopNarration();
     mode = m;
     document.body.dataset.mode = m;
     document.getElementById('mScript').classList.toggle('on', m === 'script');
