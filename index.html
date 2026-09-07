@@ -230,13 +230,14 @@
   .toolbar{position:fixed;top:14px;right:0;z-index:80;display:flex;gap:6px;align-items:center;
     padding:7px;background:var(--surface);border:3px solid var(--line);border-radius:14px;
     box-shadow:0 6px 0 -2px var(--shadow);font-family:var(--mono);font-size:12px;
-    transform:translateX(-14px);transition:transform .3s cubic-bezier(.22,.72,.24,1)}
+    transform:translateX(-14px);transition:opacity .25s ease,transform .42s cubic-bezier(.32,.72,.25,1)}
   .toolbar .grip{flex:0 0 auto;align-self:stretch;width:16px;display:flex;align-items:center;justify-content:center;
-    cursor:pointer;color:var(--ink-soft);user-select:none}
+    cursor:pointer;color:var(--ink-soft);user-select:none;-webkit-tap-highlight-color:transparent}
+  .toolbar .grip:focus-visible{outline:3px solid var(--scarf);outline-offset:2px;border-radius:6px}
   .toolbar .grip svg{width:11px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;
-    stroke-linecap:round;stroke-linejoin:round;transition:transform .3s ease}
+    stroke-linecap:round;stroke-linejoin:round;transition:transform .42s cubic-bezier(.32,.72,.25,1)}
   .toolbar:hover .grip{color:var(--ink)}
-  body[data-bar="closed"] .toolbar{transform:translateX(calc(100% - 34px));
+  body[data-bar="closed"] .toolbar{transform:translateX(calc(100% - 28px));
     border-top-right-radius:0;border-bottom-right-radius:0}
   body[data-bar="open"] .toolbar .grip svg{transform:scaleX(-1)}
   .toolbar button{font:inherit;font-family:var(--mono);cursor:pointer;border:2px solid var(--rule);background:transparent;
@@ -268,7 +269,8 @@
   #dots i.on{background:#F5D24A}
   body[data-chrome="off"] .toolbar,body[data-chrome="off"] .stage-head,body[data-chrome="off"] .stage-foot{opacity:0;pointer-events:none}
   body[data-chrome="off"] #stageArt{inset:20px}
-  .toolbar,.stage-head,.stage-foot{transition:opacity .25s ease}
+  .stage-head,.stage-foot{transition:opacity .25s ease}
+  .toolbar{transition:opacity .25s ease,transform .42s cubic-bezier(.32,.72,.25,1)}
 
   @media (max-width:640px){
     .crest svg{width:60px;height:60px} .crest b{font-size:13px}
@@ -2012,7 +2014,7 @@
 </div>
 
 <div class="toolbar" role="group" aria-label="Screen mode">
-  <span class="grip" aria-hidden="true"><svg viewBox="0 0 12 18"><path d="M8.5 2 L3 9 L8.5 16"/></svg></span>
+  <span class="grip" role="button" tabindex="0" aria-label="Show or hide the controls"><svg viewBox="0 0 12 18" aria-hidden="true"><path d="M8.5 2 L3 9 L8.5 16"/></svg></span>
   <button id="mScript" type="button">SCRIPT</button>
   <button id="mStage" type="button">STAGE</button>
   <span class="pos" id="pos">1 / 5</span>
@@ -2164,15 +2166,32 @@
   (function(){
     var bar = document.querySelector('.toolbar');
     if (!bar) return;
-    var t = 0, HIDE = 2600;
-    function open(){ clearTimeout(t); document.body.dataset.bar = 'open'; }
+    var grip = bar.querySelector('.grip');
+    var t = 0, lock = 0, HIDE = 2600;
+    // only a real pointer gets hover-to-open; on a touch screen the tab is the only way in,
+    // so a tap on it always means "open" rather than a synthesised hover followed by a close
+    var hoverable = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
+    function isShut(){ return document.body.dataset.bar === 'closed'; }
+    function open(){ if (Date.now() < lock) return; clearTimeout(t); document.body.dataset.bar = 'open'; }
     function close(d){ clearTimeout(t); t = setTimeout(function(){ document.body.dataset.bar = 'closed'; }, d || HIDE); }
-    bar.addEventListener('mouseenter', open);
-    bar.addEventListener('mouseleave', function(){ close(HIDE); });
-    bar.addEventListener('focusin', open);
+    function shutNow(){ clearTimeout(t); document.body.dataset.bar = 'closed'; lock = Date.now() + 800; }
+    function toggle(e){
+      if (e){ e.preventDefault(); e.stopPropagation(); }
+      if (isShut()){ lock = 0; open(); close(hoverable ? 4200 : 6000); }
+      else { shutNow(); if (grip.blur) grip.blur(); }
+    }
+    if (grip){
+      grip.addEventListener('click', toggle);
+      grip.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') toggle(e); });
+    }
+    if (hoverable){
+      bar.addEventListener('mouseenter', open);
+      bar.addEventListener('mouseleave', function(){ close(HIDE); });
+    }
+    bar.addEventListener('focusin', function(e){ if (e.target !== grip) open(); });
     bar.addEventListener('focusout', function(){ close(HIDE); });
-    bar.addEventListener('click', function(){ open(); close(4200); });
-    bar.addEventListener('touchstart', function(){ open(); close(5200); }, { passive: true });
+    bar.addEventListener('click', function(e){ if (e.target === grip || grip.contains(e.target)) return; open(); close(4200); });
+    bar.addEventListener('touchstart', function(e){ if (e.target === grip || grip.contains(e.target)) return; open(); close(5200); }, { passive: true });
     open(); close(3200);
   })();
 
