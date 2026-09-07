@@ -237,7 +237,7 @@
   .toolbar .grip svg{width:11px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;
     stroke-linecap:round;stroke-linejoin:round;transition:transform .42s cubic-bezier(.32,.72,.25,1)}
   .toolbar:hover .grip{color:var(--ink)}
-  body[data-bar="closed"] .toolbar{transform:translateX(calc(100% - 28px));
+  body:not([data-bar="open"]) .toolbar{transform:translateX(calc(100% - 28px));
     border-top-right-radius:0;border-bottom-right-radius:0}
   body[data-bar="open"] .toolbar .grip svg{transform:scaleX(-1)}
   .toolbar button{font:inherit;font-family:var(--mono);cursor:pointer;border:2px solid var(--rule);background:transparent;
@@ -279,7 +279,7 @@
     .step{width:46px;height:46px;font-size:18px}
     .rail .src{display:none} .interlude{margin-left:0}
     .toolbar{left:8px;right:8px;top:8px;justify-content:center;flex-wrap:wrap;transform:none}
-    body[data-bar="closed"] .toolbar{transform:none}
+    body:not([data-bar="open"]) .toolbar{transform:none}
     .toolbar .grip{display:none}
   }
 </style>
@@ -2171,7 +2171,7 @@
     // only a real pointer gets hover-to-open; on a touch screen the tab is the only way in,
     // so a tap on it always means "open" rather than a synthesised hover followed by a close
     var hoverable = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
-    function isShut(){ return document.body.dataset.bar === 'closed'; }
+    function isShut(){ return document.body.dataset.bar !== 'open'; }
     function open(){ if (Date.now() < lock) return; clearTimeout(t); document.body.dataset.bar = 'open'; }
     function close(d){ clearTimeout(t); t = setTimeout(function(){ document.body.dataset.bar = 'closed'; }, d || HIDE); }
     function shutNow(){ clearTimeout(t); document.body.dataset.bar = 'closed'; lock = Date.now() + 800; }
@@ -2192,7 +2192,6 @@
     bar.addEventListener('focusout', function(){ close(HIDE); });
     bar.addEventListener('click', function(e){ if (e.target === grip || grip.contains(e.target)) return; open(); close(4200); });
     bar.addEventListener('touchstart', function(e){ if (e.target === grip || grip.contains(e.target)) return; open(); close(5200); }, { passive: true });
-    open(); close(3200);
   })();
 
   /* ---------------- narration: William reading the story ---------------- */
