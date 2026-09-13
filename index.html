@@ -202,6 +202,9 @@
   .narrate[data-on="1"] .ic .ps{display:inline}
   .narrate .t{font-variant-numeric:tabular-nums}
   .title-block .narrate{margin:10px 0 0;transform:none}
+  .play-game{display:flex;width:fit-content;align-items:center;gap:8px;margin:16px 0 0;border:3px solid var(--ink);background:var(--tomato);color:#fff;text-decoration:none;font-family:var(--display);font-size:15px;letter-spacing:.04em;line-height:1;border-radius:999px;padding:12px 22px;box-shadow:0 3px 0 var(--ink)}
+  .play-game:hover{background:#c8281d}
+  .play-game:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
 
   /* ---------- original / cartoon comparison ---------- */
   [hidden]{display:none !important}
@@ -1008,6 +1011,7 @@
       <h1>The Tomato Kingdom War</h1>
       <p class="logline">The Lettuce Kingdom attacks first. Both sides have a missile silo, and both sides fight in the sky. But the real story is about a soldier on the ground named Tom — and what is buried under the Lettuce Kingdom.</p>
       <button class="narrate" type="button" data-src="audio/00-intro.mp3" aria-label="Play William reading the introduction"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path class="pl" d="M7 4 L20 12.5 L7 21 Z"/><g class="ps"><rect x="6" y="4" width="4.6" height="17" rx="1.2"/><rect x="13.4" y="4" width="4.6" height="17" rx="1.2"/></g></svg><span class="t">PLAY</span></button>
+      <a class="play-game" href="games/">▶ PLAY THE GAME</a>
     </div>
   </header>
 
